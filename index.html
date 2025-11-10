@@ -195,32 +195,24 @@ document.addEventListener("DOMContentLoaded", function() {
     }, 1000);
 
     // === 3. RSVP FORM ===
-    const form = document.getElementById('rsvp-form');
+const form = document.getElementById('rsvp-form');
     const messageDiv = document.getElementById('rsvp-message');
     const submitButton = document.getElementById('rsvp-submit-button');
-
-    // Replace with your deployed Google Apps Script URL
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbwvfLzNqKV_3QOkaofmD_nzYwvfUeH4SfgvgiIbaEjXX4-pJ2WDskt7sAhsRSBgUEdY/exec';
+    const scriptURL = 'https://script.google.com/macros/s/.../exec';
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
-
-        // Collect form data
         const formData = {
             name: document.getElementById('name').value.trim(),
             attending: document.getElementById('attending').value,
             guests: document.getElementById('guests').value,
             message: document.getElementById('message').value.trim()
         };
-
-        // Simple validation
         if (!formData.name || !formData.attending) {
             messageDiv.textContent = "⚠️ Please fill in your name and attendance status.";
             messageDiv.style.display = "block";
             return;
         }
-
-        // Show submitting message & disable button
         messageDiv.textContent = "⏳ Submitting your RSVP...";
         messageDiv.style.display = "block";
         submitButton.disabled = true;
@@ -228,10 +220,9 @@ document.addEventListener("DOMContentLoaded", function() {
         try {
             const res = await fetch(scriptURL, {
                 method: 'POST',
-                headers: { 'Content-Type': 'text/plain;charset=utf-8' }, // Works around CORS for Google Apps Script
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
                 body: JSON.stringify(formData)
             });
-
             if (res.ok) {
                 messageDiv.textContent = "✅ Thank you! Your church service RSVP has been received.";
                 form.reset();
