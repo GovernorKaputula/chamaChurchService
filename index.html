@@ -193,10 +193,10 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }, 1000);
 
-    // rsvp
+    //rsvp
 const form = document.getElementById('rsvp-form');
 const messageDiv = document.getElementById('rsvp-message');
-const scriptURL = "https://script.google.com/macros/s/AKfycbzfJons21AVtlMPhNeZBHRTIWtO5aIgbKjNQTJOr-ATvnPeKXsyzSq9RWsIvvh3pegf/exec"; // replace with your script
+const scriptURL = "https://script.google.com/macros/s/AKfycbzfJons21AVtlMPhNeZBHRTIWtO5aIgbKjNQTJOr-ATvnPeKXsyzSq9RWsIvvh3pegf/exec";
 
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -208,12 +208,7 @@ form.addEventListener('submit', async (e) => {
         return;
     }
 
-    // Use FormData
-    const formData = new FormData();
-    formData.append('name', document.getElementById('name').value.trim());
-    formData.append('attending', attendingStatusValue);
-    formData.append('guests', document.getElementById('guests').value || "1");
-    formData.append('message', document.getElementById('message')?.value.trim() || "None");
+    const formData = new FormData(form); // simpler: uses the whole form
 
     messageDiv.textContent = "⏳ Submitting your RSVP...";
     messageDiv.style.display = 'block';
@@ -229,7 +224,7 @@ form.addEventListener('submit', async (e) => {
             messageDiv.textContent = "✅ Thank you! Your church service RSVP has been received.";
             form.reset();
         } else {
-            console.error("Server error:", res.status);
+            console.error("Server error:", res.status, await res.text());
             messageDiv.textContent = "⚠️ There was an issue submitting your RSVP. Please try again later.";
         }
     } catch (err) {
@@ -238,7 +233,6 @@ form.addEventListener('submit', async (e) => {
     } finally {
         document.getElementById('rsvp-submit-button').disabled = false;
     }
-
     });
 });
 </script>
