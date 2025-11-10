@@ -194,30 +194,33 @@ document.addEventListener("DOMContentLoaded", function() {
     }, 1000);
 
     // === 3. RSVP FORM ===
-// === RSVP Submission ===
-const form = document.getElementById('rsvp-form');
-const messageDiv = document.getElementById('rsvp-message');
-const scriptURL = "https://script.google.com/macros/s/AKfycbzcRi08M_Zc3TOabidkYocKXoMLTiCHbVTyixvQFbvYp6iFun48tLZSsm8OzDDPmBRZ/exec";
+    const form = document.getElementById('rsvp-form');
+    const messageDiv = document.getElementById('rsvp-message');
+    const scriptURL = "https://script.google.com/macros/s/AKfycbzcRi08M_Zc3TOabidkYocKXoMLTiCHbVTyixvQFbvYp6iFun48tLZSsm8OzDDPmBRZ/exec";
 
-form.addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const formData = new FormData(form);
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
 
-  try {
-    const res = await fetch(scriptURL, { method: 'POST', body: formData });
-    if (res.ok) {
-      messageDiv.textContent = "✅ Thank you! Your church service RSVP has been received.";
-      form.reset();
-    } else {
-      messageDiv.textContent = "⚠️ There was an issue submitting your RSVP. Please try again later.";
-    }
-  } catch (err) {
-    messageDiv.textContent = "❌ Network error. Please check your connection and try again.";
-  }
-});
+        const formData = new FormData(form);
+        messageDiv.textContent = "⏳ Submitting your RSVP...";
+        messageDiv.style.display = "block";
 
+        try {
+            const res = await fetch(scriptURL, { method: 'POST', body: formData });
+            if (res.ok) {
+                messageDiv.textContent = "✅ Thank you! Your church service RSVP has been received.";
+                form.reset();
+            } else {
+                messageDiv.textContent = "⚠️ There was an issue submitting your RSVP. Please try again later.";
+            }
+        } catch (err) {
+            console.error(err);
+            messageDiv.textContent = "❌ Network error. Please check your connection and try again.";
+        }
+    });
 });
 </script>
+
 
 
 </body>
