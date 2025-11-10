@@ -194,30 +194,45 @@ document.addEventListener("DOMContentLoaded", function() {
     }, 1000);
 
     // === 3. RSVP FORM ===
-    const form = document.getElementById('rsvp-form');
-    const messageDiv = document.getElementById('rsvp-message');
-    const scriptURL = "https://script.google.com/macros/s/AKfycbzcRi08M_Zc3TOabidkYocKXoMLTiCHbVTyixvQFbvYp6iFun48tLZSsm8OzDDPmBRZ/exec";
+   const form = document.getElementById('rsvp-form');
+const messageDiv = document.getElementById('rsvp-message');
+const scriptURL = 'https://script.google.com/macros/s/AKfycby3WmeJZuE1tRMAUNEC6OjK3ZsU_3Ni1dTEBQvn9dMenJrWxLWCObJtngA4LboIGaDC/exec';
 
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault();
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
 
-        const formData = new FormData(form);
-        messageDiv.textContent = "⏳ Submitting your RSVP...";
-        messageDiv.style.display = "block";
+  const formData = {
+    name: document.getElementById('name').value,
+    attending: document.getElementById('attending').value,
+    guests: document.getElementById('guests').value,
+    message: document.getElementById('message').value
+  };
 
-        try {
-            const res = await fetch(scriptURL, { method: 'POST', body: formData });
-            if (res.ok) {
-                messageDiv.textContent = "✅ Thank you! Your church service RSVP has been received.";
-                form.reset();
-            } else {
-                messageDiv.textContent = "⚠️ There was an issue submitting your RSVP. Please try again later.";
-            }
-        } catch (err) {
-            console.error(err);
-            messageDiv.textContent = "❌ Network error. Please check your connection and try again.";
-        }
+  messageDiv.textContent = "⏳ Submitting your RSVP...";
+  messageDiv.style.display = "block";
+  document.getElementById('rsvp-submit-button').disabled = true;
+
+  try {
+    const res = await fetch(scriptURL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData)
     });
+
+    if (res.ok) {
+      messageDiv.textContent = "✅ Thank you! Your church service RSVP has been received.";
+      form.reset();
+    } else {
+      messageDiv.textContent = "⚠️ There was an issue submitting your RSVP. Please try again later.";
+    }
+  } catch (err) {
+    console.error(err);
+    messageDiv.textContent = "❌ Network error. Please check your connection and try again.";
+  } finally {
+    document.getElementById('rsvp-submit-button').disabled = false;
+  }
+});
+
 });
 </script>
 
