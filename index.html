@@ -239,62 +239,62 @@
                 }
             }, 1000);
 
-            // === 3. GOOGLE SHEETS RSVP SUBMISSION ===
-            const form = document.getElementById('rsvp-form');
-            const messageDiv = document.getElementById('rsvp-message');
-            // NOTE: Replace this with your actual deployed Google Apps Script URL
-            const scriptURL = "https://script.google.com/macros/s/AKfycbzy3Nz7vwggV2nTqxhxxm5ZNdR7BS_ILbaSyE0WSQhf2ORsF6nA4crHJ_UXtAmQDcja/exec";
+          <!-- === 3. GOOGLE SHEETS CHURCH SERVICE RSVP SUBMISSION === -->
+<script>
+  const form = document.getElementById('rsvp-form');
+  const messageDiv = document.getElementById('rsvp-message');
 
-            form.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                
-                // CORRECTED: Get the value of the <select> element
-                const attendingSelect = document.getElementById('attending');
-                const attendingStatusValue = attendingSelect ? attendingSelect.value : "";
-                
-                // Validation check for the dropdown
-                if (attendingStatusValue === "") {
-                    messageDiv.textContent = "⚠️ Please select whether you will attend.";
-                    messageDiv.style.display = 'block';
-                    return;
-                }
-                
-                // Form data payload
-                const data = {
-                    name: document.getElementById('name').value,
-                    attending: attendingStatusValue, // Corrected value
-                    guests: document.getElementById('guests').value,
-                    dietary: document.getElementById('dietary').value || 'None'
-                };
+  // 🔗 Replace this with your actual deployed Google Apps Script URL
+  const scriptURL = "https://script.google.com/macros/s/AKfycbzfJons21AVtlMPhNeZBHRTIWtO5aIgbKjNQTJOr-ATvnPeKXsyzSq9RWsIvvh3pegf/exec";
 
-                // Show loading message and disable button
-                messageDiv.textContent = "Sending RSVP...";
-                messageDiv.style.display = 'block';
-                document.getElementById('rsvp-submit-button').disabled = true;
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
 
-                try {
-                    const res = await fetch(scriptURL, {
-                        method: "POST",
-                        redirect: "follow",
-                        // Using text/plain for compatibility with some Google Scripts
-                        headers: { "Content-Type": "text/plain;charset=utf-8" }, 
-                        body: JSON.stringify(data)
-                    });
+    const attendingSelect = document.getElementById('attending');
+    const attendingStatusValue = attendingSelect ? attendingSelect.value : "";
 
-                    if (res.ok) {
-                        messageDiv.textContent = "✅ Your RSVP has been submitted successfully! Thank you!";
-                        form.reset();
-                    } else {
-                        console.error("Server responded with error status:", res.status);
-                        messageDiv.textContent = "⚠️ There was an issue submitting your RSVP. Please check the RSVP link or try again.";
-                    }
-                } catch (err) {
-                    console.error("Fetch Error:", err);
-                    messageDiv.textContent = "❌ Network error. Please check your connection and try again.";
-                } finally {
-                    document.getElementById('rsvp-submit-button').disabled = false;
-                }
-            });
+    // Validate selection
+    if (attendingStatusValue === "") {
+      messageDiv.textContent = "⚠️ Please select whether you will attend.";
+      messageDiv.style.display = 'block';
+      return;
+    }
+
+    // Form data payload for Google Sheet
+    const data = {
+      name: document.getElementById('name').value.trim(),
+      attending: attendingStatusValue,
+      guests: document.getElementById('guests').value || "1",
+      message: document.getElementById('message')?.value.trim() || "None"
+    };
+
+    // Show loading message
+    messageDiv.textContent = "⏳ Submitting your RSVP...";
+    messageDiv.style.display = 'block';
+    document.getElementById('rsvp-submit-button').disabled = true;
+
+    try {
+      const res = await fetch(scriptURL, {
+        method: "POST",
+        redirect: "follow",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(data)
+      });
+
+      if (res.ok) {
+        messageDiv.textContent = "✅ Thank you! Your church service RSVP has been received.";
+        form.reset();
+      } else {
+        console.error("Server error:", res.status);
+        messageDiv.textContent = "⚠️ There was an issue submitting your RSVP. Please try again later.";
+      }
+    } catch (err) {
+      console.error("Fetch Error:", err);
+      messageDiv.textContent = "❌ Network error. Please check your connection and try again.";
+    } finally {
+      document.getElementById('rsvp-submit-button').disabled = false;
+    }
+  });
         });
     </script>
 </body>
