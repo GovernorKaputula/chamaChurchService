@@ -85,49 +85,71 @@
         </section>
 
         <section id="rsvp" class="form-section content-section" data-scroll>
-            <h2>RSVP: Will You Join Our Celebration?</h2>
-            <p class="readable-text">
-                We can't wait to share our special day with you! Kindly confirm your attendance by <strong>15th November 2025</strong>.
-            </p>
+  <h2>RSVP: Will You Attend Our Church Service?</h2>
+  <p class="readable-text">
+    We’re excited to have you join us for the <strong>wedding church service</strong>! 
+    Kindly confirm your attendance by <strong>15th November 2025</strong>.
+  </p>
 
-            <form id="rsvp-form" class="rsvp-form">
-                <div class="form-group">
-                    <label for="name">Your Full Name(s)</label>
-                    <input type="text" id="name" name="name" required placeholder="e.g., Bright Mulenga" />
-                </div>
-                
-                <div class="form-group attendance-group">
-                    <label for="attending">Will you be attending?</label>
-                    <select id="attending" name="attending" required>
-                        <option value="">-- Please Select --</option>
-                        <option value="Yes">Joyfully Attending 🎉</option>
-                        <option value="No">Regretfully Declining 😔</option>
-                    </select>
-                </div>
+  <form id="rsvp-form" class="rsvp-form">
+    <div class="form-group">
+      <label for="name">Your Full Name(s)</label>
+      <input 
+        type="text" 
+        id="name" 
+        name="name" 
+        required 
+        placeholder="e.g., Bright Mulenga" 
+      />
+    </div>
 
-             <div class="form-group guest-count-group">
-  <label for="guests">Total Number in your party (including yourself)</label>
-  <input 
-    type="number" id="guests"  name="guests"  value="1"  readonly  required 
-  />
-</div>
+    <div class="form-group attendance-group">
+      <label for="attending">Will you be attending the church service?</label>
+      <select id="attending" name="attending" required>
+        <option value="">-- Please Select --</option>
+        <option value="Yes">Yes, I’ll attend the church service 🙏</option>
+        <option value="No">No, I won’t be able to attend 😔</option>
+      </select>
+    </div>
 
-                
-                <div class="form-group">
-                    <label for="dietary">Dietary Needs or Allergies (Optional)</label>
-                    <textarea id="dietary" name="dietary" rows="3" placeholder="e.g., Vegetarian, Gluten-Free, Nut allergy..."></textarea>
-                </div>
-                <p class="readable-text">"Gifts In monetary Form Shall Be Highly Aprreciated!"</p>
-               <strong><p class="readable-text">Please Note:</p></strong>
-                <p class="readable-text">1. This Card is not Transferrable</p>
-                <p class="readable-text">2. No Kids Allowed</p>
-                <p class="readable-text">3. This is a "one person" card (No Mr And Mrs)</p>
-                <p class="readable-text">4. we will not consider any RSVP after <strong>November 15th 2025</strong> </p>
-                <button id="rsvp-submit-button" type="submit" class="cta-button pulse">Submit RSVP</button>
-            </form>
+    <div class="form-group guest-count-group">
+      <label for="guests">Total Number in your party (including yourself)</label>
+      <input 
+        type="number" 
+        id="guests" 
+        name="guests" 
+        value="1" 
+        readonly 
+        required 
+      />
+    </div>
 
-            <div id="rsvp-message" class="hidden-message"></div>
-        </section>
+    <div class="form-group">
+      <label for="message">Message to the Couple (Optional)</label>
+      <textarea 
+        id="message" 
+        name="message" 
+        rows="3" 
+        placeholder="e.g., Congratulations! Wishing you all the best on your special day."
+      ></textarea>
+    </div>
+
+    <p class="readable-text note">
+      <strong>Please Note:</strong><br>
+      1. This invitation is <strong>for the church service only</strong>.<br>
+      2. This card is <strong>non-transferable</strong>.<br>
+      3. No kids are allowed.<br>
+      4. RSVP closes on <strong>15th November 2025</strong>.
+    </p>
+
+    <button id="rsvp-submit-button" type="submit" class="cta-button pulse">
+      Submit RSVP
+    </button>
+  </form>
+
+  <div id="rsvp-message" class="hidden-message"></div>
+</section>
+
 
         <section id="gallery" class="content-section" data-scroll>
             <h2>Gallery</h2>
