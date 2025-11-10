@@ -1,84 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Church Service RSVP | Kenneth & Natasha</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mwila & Chama’s Wedding | 29.11.2025</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <h1 data-scroll>Church Thanksgiving Service</h1>
-    <p data-scroll>Join us as we thank God for His goodness and celebrate His blessings.</p>
-  </header>
 
-  <section id="countdown-section" data-scroll>
-    <h2>Countdown to the Service</h2>
-    <div id="countdown">
-      <div><span id="days">00</span><small>Days</small></div>
-      <div><span id="hours">00</span><small>Hours</small></div>
-      <div><span id="minutes">00</span><small>Minutes</small></div>
-      <div><span id="seconds">00</span><small>Seconds</small></div>
-    </div>
-  </section>
+<nav class="site-navigation sticky-nav">
+    <ul>
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#story">Our Story</a></li>
+        <li><a href="#timeline">Timeline</a></li>
+        <li><a href="#rsvp">RSVP</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+    </ul>
+</nav>
 
-  <section id="details" data-scroll>
-    <h2>Service Details</h2>
-    <p><strong>Date:</strong> Saturday, 29th November 2025</p>
-    <p><strong>Time:</strong> 10:00 AM</p>
-    <p><strong>Venue:</strong> Miracle Life Family Church, Lusaka</p>
-    <p><strong>Contact:</strong> Chaile Phiri - <a href="tel:+260977326180">+260 977 326180</a></p>
-    <p><strong>Organizer:</strong> Bertha Pandwe</p>
-  </section>
+<main>
+    <header class="hero" id="hero" style="background-image: url('images/wed4.jpg');">
+        <div class="hero-content" data-scroll>
+            <p class="pre-heading">The wedding of</p>
+            <h1 class="couple-names">Mwila & Chama</h1>
+            <p class="date">29th November 2025</p>
+        </div>
+    </header>
 
-  <section id="rsvp" data-scroll>
-    <h2>RSVP to Attend</h2>
-    <form id="rsvp-form">
-      <div class="form-group">
-        <label for="name">Full Name</label>
-        <input type="text" id="name" name="name" placeholder="Enter your name" required />
-      </div>
+    <section id="story" class="content-section" data-scroll>
+        <div class="invitation-message" data-scroll="fade-up">
+            <h2>We invite you to celebrate our union!</h2>
+            <p class="readable-text">
+                With hearts full of love and gratitude, the Mbulakulima and Musonda families request the pleasure of your company as their children Mwila and Chama exchange vows and begin their journey as husband and wife. Your presence will be our greatest gift.
+                <strong>Please join us in Lusaka, Zambia.</strong>
+            </p>
+        </div>
 
-      <div class="form-group">
-        <label for="attending">Will you be attending?</label>
-        <select id="attending" name="attending" required>
-          <option value="">-- Please choose --</option>
-          <option value="Yes">Yes, I’ll be there</option>
-          <option value="No">No, I can’t make it</option>
-        </select>
-      </div>
+        <div class="couple-intro-container">
+            <div class="couple-card" data-scroll="fade-right">
+                <img src="images/mwila.jpg" alt="Mwila Mbulakulima, The Groom" class="profile-photo" />
+                <h3>Mwila Mbulakulima</h3>
+                <p>The Groom</p>
+            </div>
+            <div class="couple-card" data-scroll="fade-left">
+                <img src="images/Chama.jpg" alt="Chama Musonda, The Bride" class="profile-photo" />
+                <h3>Chama Musonda</h3>
+                <p>The Bride</p>
+            </div>
+        </div>
+    </section>
 
-      <div class="form-group">
-        <label for="guests">Total number of people (including you)</label>
-        <input type="number" id="guests" name="guests" min="1" value="1" required />
-      </div>
+    <section id="countdown-section" class="countdown-section" data-scroll>
+        <h2>Until We Say "I Do"</h2>
+        <div class="countdown-timer" id="countdown">
+            <div class="time-unit"><span id="days">00</span><small>Days</small></div>
+            <div class="time-unit"><span id="hours">00</span><small>Hours</small></div>
+            <div class="time-unit"><span id="minutes">00</span><small>Minutes</small></div>
+            <div class="time-unit"><span id="seconds">00</span><small>Seconds</small></div>
+        </div>
+    </section>
 
-      <div class="form-group">
-        <label for="message">Any message or note (optional)</label>
-        <textarea id="message" name="message" rows="3" placeholder="Add a short message"></textarea>
-      </div>
+    <section id="timeline" class="content-section" data-scroll>
+        <h2>The Wedding Timeline</h2>
+        <div class="event-details">
+            <div class="event ceremony" data-scroll="fade-up">
+                <h4><span class="event-icon"><i class="fa-solid fa-church"></i></span> The Ceremony</h4>
+                <p class="time-details">
+                    <strong>09:30 hrs:</strong> Guests arrive and are seated.<br>
+                    <strong>10:00 hrs:</strong> Procession begins.<br>
+                    <strong>11:30 hrs:</strong> Ceremony concludes.
+                </p>
+                <address>St. Ignatius Catholic Church, Lusaka</address>
+                <a href="https://maps.google.com/?cid=1222717358917862993" target="_blank" class="map-link">View Directions</a>
+            </div>
+        </div>
+    </section>
 
-      <button type="submit" id="rsvp-submit-button">Submit RSVP</button>
-      <div id="rsvp-message"></div>
-    </form>
-  </section>
+    <section id="rsvp" class="form-section content-section" data-scroll>
+        <h2>RSVP: Will You Attend Our Church Service?</h2>
+        <p class="readable-text">
+            We’re excited to have you join us for the <strong>wedding church service</strong>! Kindly confirm your attendance by <strong>15th November 2025</strong>.
+        </p>
 
-  <footer>
-    <p>Made with ❤️ by Kenneth & Natasha</p>
-  </footer>
+        <form id="rsvp-form" class="rsvp-form">
+            <div class="form-group">
+                <label for="name">Your Full Name(s)</label>
+                <input type="text" id="name" name="name" required placeholder="e.g., Bright Mulenga" />
+            </div>
 
-  <script>
-  document.addEventListener("DOMContentLoaded", function() {
+            <div class="form-group attendance-group">
+                <label for="attending">Will you be attending the church service?</label>
+                <select id="attending" name="attending" required>
+                    <option value="">-- Please Select --</option>
+                    <option value="Yes">Yes, I’ll attend the church service 🙏</option>
+                    <option value="No">No, I won’t be able to attend 😔</option>
+                </select>
+            </div>
+
+            <div class="form-group guest-count-group">
+                <label for="guests">Total Number in your party (including yourself)</label>
+                <input type="number" id="guests" name="guests" value="1" readonly required />
+            </div>
+
+            <div class="form-group">
+                <label for="message">Message to the Couple (Optional)</label>
+                <textarea id="message" name="message" rows="3" placeholder="e.g., Congratulations! Wishing you all the best on your special day."></textarea>
+            </div>
+
+            <p class="readable-text note">
+                <strong>Please Note:</strong><br>
+                1. This invitation is <strong>for the church service only</strong>.<br>
+                2. This card is <strong>non-transferable</strong>.<br>
+                3. No kids are allowed.<br>
+                4. RSVP closes on <strong>15th November 2025</strong>.
+            </p>
+
+            <button id="rsvp-submit-button" type="submit" class="cta-button pulse">Submit RSVP</button>
+        </form>
+
+        <div id="rsvp-message" class="hidden-message"></div>
+    </section>
+
+    <section id="gallery" class="content-section" data-scroll>
+        <h2>Gallery</h2>
+        <p class="readable-text">A few moments from our journey together.</p>
+
+        <div class="photo-grid-5">
+            <div class="main-photo" data-scroll="fade-up">
+                <img src="images/wed2.jpg" alt="Couple photo 1" role="button" />
+            </div>
+            <div class="sub-photos">
+                <img src="images/wed3.jpg" alt="Couple photo 3" data-scroll="fade-up" data-scroll-delay="200" role="button" />
+                <img src="images/wed1.jpg" alt="Couple photo 4" data-scroll="fade-up" data-scroll-delay="300" role="button" />
+            </div>
+        </div>
+
+        <div class="contact-details" data-scroll="fade-up">
+            <h3>For Event Details, Kindly Contact:</h3>
+            <p><strong>Chaile Phiri</strong> (From Him): <a href="tel:+26097732180">+260 977 326 180</a></p>
+            <p><strong>Bertha Pandwe</strong> (From Her): <a href="tel:+260979133402">+260 979 133 402</a></p>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <p>
+        © Mwila & Chama 2025 | #MwilaAndChamaSayIDo<br>
+        Designed by <a href="https://www.yellowphase.org" target="_blank" rel="noopener noreferrer">Yellowphase</a>
+    </p>
+</footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
     // === 1. SCROLL REVEAL ===
     const scrollElements = document.querySelectorAll("[data-scroll]");
     const observer = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("scrolled");
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15 });
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("scrolled");
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { root: null, threshold: 0.15, rootMargin: "0px 0px -50px 0px" });
     scrollElements.forEach(el => observer.observe(el));
 
     // === 2. COUNTDOWN TIMER ===
@@ -86,24 +172,25 @@
     const countdownDate = new Date("Nov 29, 2025 10:00:00 GMT+02:00").getTime();
 
     const timer = setInterval(() => {
-      const now = new Date().getTime();
-      const distance = countdownDate - now;
+        const now = new Date().getTime();
+        const distance = countdownDate - now;
 
-      if (distance <= 0) {
-        clearInterval(timer);
-        countdownContainer.innerHTML = "<h2>The celebration is underway!</h2>";
-        return;
-      }
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        document.getElementById("days").textContent = String(days).padStart(2, "0");
+        document.getElementById("hours").textContent = String(hours).padStart(2, "0");
+        document.getElementById("minutes").textContent = String(minutes).padStart(2, "0");
+        document.getElementById("seconds").textContent = String(seconds).padStart(2, "0");
 
-      document.getElementById("days").textContent = days.toString().padStart(2, '0');
-      document.getElementById("hours").textContent = hours.toString().padStart(2, '0');
-      document.getElementById("minutes").textContent = minutes.toString().padStart(2, '0');
-      document.getElementById("seconds").textContent = seconds.toString().padStart(2, '0');
+        if (distance < 0) {
+            clearInterval(timer);
+            if (countdownContainer) {
+                countdownContainer.innerHTML = "<h2>The celebration is underway!</h2>";
+            }
+        }
     }, 1000);
 
     // === 3. GOOGLE SHEETS CHURCH SERVICE RSVP SUBMISSION ===
@@ -112,49 +199,51 @@
     const scriptURL = "https://script.google.com/macros/s/AKfycbzfJons21AVtlMPhNeZBHRTIWtO5aIgbKjNQTJOr-ATvnPeKXsyzSq9RWsIvvh3pegf/exec";
 
     form.addEventListener('submit', async (e) => {
-      e.preventDefault();
+        e.preventDefault();
+        const attendingSelect = document.getElementById('attending');
+        const attendingStatusValue = attendingSelect ? attendingSelect.value : "";
 
-      const attendingStatusValue = document.getElementById('attending').value.trim();
-      if (!attendingStatusValue) {
-        messageDiv.textContent = "⚠️ Please select whether you will attend.";
-        messageDiv.style.display = 'block';
-        return;
-      }
-
-      const data = {
-        name: document.getElementById('name').value.trim(),
-        attending: attendingStatusValue,
-        guests: document.getElementById('guests').value.trim(),
-        message: document.getElementById('message').value.trim() || "None"
-      };
-
-      messageDiv.textContent = "⏳ Submitting your RSVP...";
-      messageDiv.style.display = 'block';
-      document.getElementById('rsvp-submit-button').disabled = true;
-
-      try {
-        const res = await fetch(scriptURL, {
-          method: "POST",
-          redirect: "follow",
-          headers: { "Content-Type": "text/plain;charset=utf-8" },
-          body: JSON.stringify(data)
-        });
-
-        if (res.ok) {
-          messageDiv.textContent = "✅ Thank you! Your church service RSVP has been received.";
-          form.reset();
-        } else {
-          messageDiv.textContent = "⚠️ There was an issue submitting your RSVP. Please try again later.";
-          console.error("Server error:", res.status);
+        if (attendingStatusValue === "") {
+            messageDiv.textContent = "⚠️ Please select whether you will attend.";
+            messageDiv.style.display = 'block';
+            return;
         }
-      } catch (err) {
-        messageDiv.textContent = "❌ Network error. Please check your connection and try again.";
-        console.error("Fetch Error:", err);
-      } finally {
-        document.getElementById('rsvp-submit-button').disabled = false;
-      }
+
+        const data = {
+            name: document.getElementById('name').value.trim(),
+            attending: attendingStatusValue,
+            guests: document.getElementById('guests').value || "1",
+            message: document.getElementById('message')?.value.trim() || "None"
+        };
+
+        messageDiv.textContent = "⏳ Submitting your RSVP...";
+        messageDiv.style.display = 'block';
+        document.getElementById('rsvp-submit-button').disabled = true;
+
+        try {
+            const res = await fetch(scriptURL, {
+                method: "POST",
+                redirect: "follow",
+                headers: { "Content-Type": "text/plain;charset=utf-8" },
+                body: JSON.stringify(data)
+            });
+
+            if (res.ok) {
+                messageDiv.textContent = "✅ Thank you! Your church service RSVP has been received.";
+                form.reset();
+            } else {
+                console.error("Server error:", res.status);
+                messageDiv.textContent = "⚠️ There was an issue submitting your RSVP. Please try again later.";
+            }
+        } catch (err) {
+            console.error("Fetch Error:", err);
+            messageDiv.textContent = "❌ Network error. Please check your connection and try again.";
+        } finally {
+            document.getElementById('rsvp-submit-button').disabled = false;
+        }
     });
-  });
-  </script>
+});
+</script>
+
 </body>
 </html>
