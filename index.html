@@ -82,7 +82,7 @@
     <section id="rsvp" class="form-section content-section" data-scroll>
         <h2>RSVP: Will You Attend Our Church Service?</h2>
         <p class="readable-text">
-            We’re excited to have you join us for the <strong>wedding church service</strong>! Kindly confirm your attendance by <strong>15th November 2025</strong>.
+            We’re excited to have you join us for the **wedding church service**! Kindly confirm your attendance by **15th November 2025**.
         </p>
 
         <form id="rsvp-form" class="rsvp-form">
@@ -111,11 +111,11 @@
             </div>
 
             <p class="readable-text note">
-                <strong>Please Note:</strong><br>
-                1. This invitation is <strong>for the church service only</strong>.<br>
-                2. This card is <strong>non-transferable</strong>.<br>
+                **Please Note:**<br>
+                1. This invitation is **for the church service only**.<br>
+                2. This card is **non-transferable**.<br>
                 3. No kids are allowed.<br>
-                4. RSVP closes on <strong>15th November 2025</strong>.
+                4. RSVP closes on **15th November 2025**.
             </p>
 
             <button id="rsvp-submit-button" type="submit" class="cta-button pulse">Submit RSVP</button>
@@ -200,36 +200,37 @@ document.addEventListener("DOMContentLoaded", function() {
     const submitButton = document.getElementById('rsvp-submit-button');
     
     // **IMPORTANT**: Use your deployed Google Apps Script URL here.
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbxwLKLmcT08ZmYIY8EHNBSrjJr_tTLM8vMKfkl7pTsPVlswJg4uYFOzvmZgNKD2cyr6/exec;
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxwLKLmcT08ZmYIY8EHNBSrjJr_tTLM8vMKfkl7pTsPVlswJg4uYFOzvmZgNKD2cyr6/exec';
 
-    // **Step 1: Change the form action and method attributes**
+    // **Step 1: Set the form action and method attributes for GET**
     form.setAttribute('action', scriptURL);
-    form.setAttribute('method', 'GET'); // Change to GET to work with doGet(e)
+    form.setAttribute('method', 'GET'); // Submits data as URL parameters (for doGet)
 
- 
+    // **Step 2: Add validation and loading state before allowing submission**
     form.addEventListener('submit', (e) => {
-       
+        
+        // Collect data for client-side validation
         const formData = {
             name: document.getElementById('name').value.trim(),
             attending: document.getElementById('attending').value,
-            guests: document.getElementById('guests').value,
-            message: document.getElementById('message').value.trim()
-            // Note: The form will submit all 'name' attributes as query parameters.
+            // Only need to check the critical fields here
         };
 
-        if (!formData.name || !formData.attending) {
-            e.preventDefault(); // Prevent submission if validation fails
-            messageDiv.textContent = "⚠️ Please fill in your name and attendance status.";
+        if (!formData.name || !formData.attending || formData.attending === "") {
+            e.preventDefault(); // Prevent page redirect/submission if validation fails
+            messageDiv.textContent = "⚠️ Please fill in your name and select an attendance status.";
             messageDiv.classList.remove('hidden-message'); // Show the message
             submitButton.disabled = false;
             return;
         }
         
-        
+        // Set loading state (this will briefly show before the browser redirects)
         messageDiv.textContent = "⏳ Submitting your RSVP and redirecting...";
         messageDiv.classList.remove('hidden-message');
         submitButton.disabled = true;
 
+        // By NOT calling e.preventDefault() here, the browser executes the GET submission, 
+        // passing form data as URL query parameters to the Apps Script.
     });
 
 });
