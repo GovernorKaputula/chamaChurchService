@@ -194,48 +194,42 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }, 1000);
 
-    // === 3. RSVP FORM ===
-const form = document.getElementById('rsvp-form');
+    // === 3. RSVP FORM MODIFIED FOR doGet ===
+    const form = document.getElementById('rsvp-form');
     const messageDiv = document.getElementById('rsvp-message');
     const submitButton = document.getElementById('rsvp-submit-button');
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbwcbEGDuWYbY6lqt2sD7dEnE1k7_h3qeEEA9UWJz58RwcljKwPHuxhbLQvBZzyJyt1u/exec';
+    
+    // **IMPORTANT**: Use your deployed Google Apps Script URL here.
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxwLKLmcT08ZmYIY8EHNBSrjJr_tTLM8vMKfkl7pTsPVlswJg4uYFOzvmZgNKD2cyr6/exec;
 
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault();
+    // **Step 1: Change the form action and method attributes**
+    form.setAttribute('action', scriptURL);
+    form.setAttribute('method', 'GET'); // Change to GET to work with doGet(e)
+
+ 
+    form.addEventListener('submit', (e) => {
+       
         const formData = {
             name: document.getElementById('name').value.trim(),
             attending: document.getElementById('attending').value,
             guests: document.getElementById('guests').value,
             message: document.getElementById('message').value.trim()
+            // Note: The form will submit all 'name' attributes as query parameters.
         };
+
         if (!formData.name || !formData.attending) {
+            e.preventDefault(); // Prevent submission if validation fails
             messageDiv.textContent = "⚠️ Please fill in your name and attendance status.";
-            messageDiv.style.display = "block";
+            messageDiv.classList.remove('hidden-message'); // Show the message
+            submitButton.disabled = false;
             return;
         }
-        messageDiv.textContent = "⏳ Submitting your RSVP...";
-        messageDiv.style.display = "block";
+        
+        
+        messageDiv.textContent = "⏳ Submitting your RSVP and redirecting...";
+        messageDiv.classList.remove('hidden-message');
         submitButton.disabled = true;
 
-        try {
-            const res = await fetch(scriptURL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-                body: JSON.stringify(formData)
-            });
-            if (res.ok) {
-                messageDiv.textContent = "✅ Thank you! Your church service RSVP has been received.";
-                form.reset();
-            } else {
-                console.error("Server returned status:", res.status);
-                messageDiv.textContent = "⚠️ There was an issue submitting your RSVP. Please try again.";
-            }
-        } catch (err) {
-            console.error("Fetch Error:", err);
-            messageDiv.textContent = "❌ Network error. Please check your connection and try again.";
-        } finally {
-            submitButton.disabled = false;
-        }
     });
 
 });
