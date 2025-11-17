@@ -194,54 +194,43 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }, 1000);
 
-// === 3. RSVP FORM with fetch POST request instead of GET redirect ===
+    // === 3. RSVP FORM MODIFIED FOR doGet ===
     const form = document.getElementById('rsvp-form');
     const messageDiv = document.getElementById('rsvp-message');
     const submitButton = document.getElementById('rsvp-submit-button');
     
+    // **IMPORTANT**: Use your deployed Google Apps Script URL here.
     const scriptURL = 'https://script.google.com/macros/s/AKfycbySJRvGNA0t3LNZWwvcEkuEW8fFBm9w1_Xv4KO-EjRptCFsOL_xiqNU0qBLLamdnJPN/exec';
 
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault(); // 🔴 Stop redirect
+    // **Step 1: Set the form action and method attributes for GET**
+    form.setAttribute('action', scriptURL);
+    form.setAttribute('method', 'GET'); // Submits data as URL parameters (for doGet)
 
-        const name = document.getElementById('name').value.trim();
-        const attending = document.getElementById('attending').value;
-        const guests = document.getElementById('guests').value;
-        const message = document.getElementById('message').value.trim();
+    // **Step 2: Add validation and loading state before allowing submission**
+    form.addEventListener('submit', (e) => {
+        
+        // Collect data for client-side validation
+        const formData = {
+            name: document.getElementById('name').value.trim(),
+            attending: document.getElementById('attending').value,
+            // Only need to check the critical fields here
+        };
 
-        if (!name || !attending) {
-            messageDiv.textContent = "⚠️ Please enter your name and attendance status.";
-            messageDiv.classList.remove('hidden-message');
+        if (!formData.name || !formData.attending || formData.attending === "") {
+            e.preventDefault(); // Prevent page redirect/submission if validation fails
+            messageDiv.textContent = "⚠️ Please fill in your name and select an attendance status.";
+            messageDiv.classList.remove('hidden-message'); // Show the message
+            submitButton.disabled = false;
             return;
         }
-
-        submitButton.disabled = true;
-        messageDiv.textContent = "⏳ Submitting your RSVP...";
+        
+        // Set loading state (this will briefly show before the browser redirects)
+        messageDiv.textContent = "⏳ Submitting your RSVP and redirecting...";
         messageDiv.classList.remove('hidden-message');
+        submitButton.disabled = true;
 
-        try {
-            const response = await fetch(scriptURL, {
-                method: "POST",
-                body: new URLSearchParams({
-                    name: name,
-                    attending: attending,
-                    guests: guests,
-                    message: message
-                })
-            });
-
-            if (response.ok) {
-                messageDiv.textContent = "🎉 Thank you! Your RSVP has been received.";
-                form.reset();
-            } else {
-                messageDiv.textContent = "⚠️ Something went wrong while submitting. Please try again.";
-            }
-        } catch (error) {
-            console.error("Error:", error);
-            messageDiv.textContent = "❌ Network error. Please try again later.";
-        } finally {
-            submitButton.disabled = false;
-        }
+        // By NOT calling e.preventDefault() here, the browser executes the GET submission, 
+        // passing form data as URL query parameters to the Apps Script.
     });
 
 });
